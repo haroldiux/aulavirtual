@@ -1,4 +1,6 @@
-# Aula Virtual UNITEPC
+# aulavirtual
+
+Sistema de Aula Virtual para Universidad UNITEPC.
 
 Repositorio principal del proyecto Aula Virtual LMS UNITEPC.
 
