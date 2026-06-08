@@ -1,0 +1,21 @@
+.opencode/
+.codex/
+.agents/
+skills/
+plantilla front/
+
+# nested/local artifacts
+**/.env
+**/.env.local*
+**/.env.*.local
+**/node_modules/
+**/.quasar/
+**/dist/
+**/.codegraph/
+**/quasar.config.js.temporary.compiled*.mjs
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
