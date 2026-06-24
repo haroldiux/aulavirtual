@@ -10,7 +10,7 @@
 - Contratos backend previstos: `Aula-virtual/API_CONTRACTS.md`
 - Sistema de diseno: `Aula-virtual/DESIGN_SYSTEM.md`
 
-## Flujo Codex + CodeGraph
+## Flujo Codex / Antigravity + CodeGraph
 
 CodeGraph esta configurado como MCP global de Codex en `C:\Users\harol\.codex\config.toml`:
 
@@ -20,19 +20,45 @@ command = "codegraph"
 args = ["serve", "--mcp", "--no-watch"]
 ```
 
-Como se usa `--no-watch`, actualizar manualmente el indice antes de sesiones grandes:
+Y en Antigravity (Gemini) en `C:\Users\harol\.gemini\config\mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "codegraph": {
+      "command": "codegraph",
+      "args": ["serve", "--mcp", "--no-watch"]
+    }
+  }
+}
+```
+
+Como se usa `--no-watch`, actualizar manualmente el indice antes de sesiones grandes. Debido a que el frontend es un submódulo Git y el backend está en la raíz, ambos comparten la misma base de datos de CodeGraph mediante un enlace simbólico (Junction). 
+
+Para actualizar el índice de cada parte, ejecuta:
 
 ```powershell
+# Sincronizar cambios del backend (PHP/Laravel) en la raíz:
+cd "C:\PROYECTOS\PROYECTO AULA VIRTUAL"
+codegraph sync .
+
+# Sincronizar cambios del frontend (Vue/Quasar) en su subdirectorio:
 cd "C:\PROYECTOS\PROYECTO AULA VIRTUAL\Aula-virtual"
 codegraph sync .
 ```
 
-Si el indice se bloquea o queda inconsistente:
+Si el indice se bloquea o queda inconsistente, puedes recrearlo ejecutando:
 
 ```powershell
+# En la raíz (reindexa backend):
+cd "C:\PROYECTOS\PROYECTO AULA VIRTUAL"
 codegraph unlock .
 codegraph index .
-codegraph context "tarea concreta"
+
+# En Aula-virtual (reindexa frontend):
+cd "C:\PROYECTOS\PROYECTO AULA VIRTUAL\Aula-virtual"
+codegraph unlock .
+codegraph index .
 ```
 
 ## Skills Globales De Codex
@@ -54,6 +80,6 @@ El skill heredado `quasar` era para Solana, no para Quasar Vue. Quedo renombrado
 ## Reglas De Trabajo
 
 - No cambiar APIs publicas ni contratos sin actualizar `API_CONTRACTS.md`.
-- No iniciar backend Laravel en esta fase salvo instruccion explicita.
-- Mantener Vue 3 Composition API con `<script setup>`, Quasar 2, Pinia, Vue Router y servicios con fallback mock.
+- Backend Laravel 12 iniciado en `back/` (Fase A completa). Levantar con Docker: `cd back && docker compose up -d --build`, luego `docker compose exec app php artisan migrate --seed`. Ver `back/README.md`.
+- Mantener Vue 3 Composition API con `<script setup>`, Quasar 2, Pinia, Vue Router y servicios con fallback mock (hasta migrarlos a Axios real contra `back/`).
 - Preservar branding UNITEPC y patrones de `DESIGN_SYSTEM.md`.

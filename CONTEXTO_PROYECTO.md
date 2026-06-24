@@ -386,13 +386,18 @@ Páginas Vue → Stores Pinia → Servicios (Axios) → API Laravel 12 → MySQL
 - Reportes exportables (CSV real, PDF mock)
 - Panel admin con KPIs, gestión de cursos/usuarios, conexiones API, logs de sync
 
+### Fase E (E5) — Módulos de Alto Valor (Completada)
+- **Banco Docente Institucional**: Persistencia real en base de datos (`plantillas` en MySQL) con codificación JSON en Laravel. Permite a docentes guardar sus lecciones, cuestionarios o rúbricas como plantillas institucionales, y cargarlas en cualquier curso y sección desde el builder o el centro inteligente docente, con contador de uso en tiempo real en backend y frontend.
+- **Reportes Exportables**: Implementación de descargas CSV con codificación UTF-8 y BOM para compatibilidad con Excel desde `ReporteController.php` (rendimiento estudiantil, asistencia/actividad y uso de banco docente) en `ReportesPage.vue` con fallback local.
+- **Gestión y Matrícula Masiva**: Panel de administración para importación de usuarios vía CSV en `UsuariosPage.vue` conectado a `AdminUsuarioController.php` y creación rápida de cuentas con validación del lado del servidor.
+
 ---
 
 ## 10. Estado Actual del Proyecto
 
 | Componente | Estado |
 |---|---|
-| Frontend (Vue 3 + Quasar) | ✅ 4 fases completadas |
+| Frontend (Vue 3 + Quasar) | ✅ 5 fases completadas (incluyendo Fase E) |
 | Mock Data | ✅ 6 archivos, datos completos |
 | Autenticación mock | ✅ 4 roles funcionales |
 | Dashboard Docente | ✅ KPIs, gráficos, entregas |
@@ -406,30 +411,35 @@ Páginas Vue → Stores Pinia → Servicios (Axios) → API Laravel 12 → MySQL
 | Libro de Calificaciones | ✅ Tabla interactiva + exportación |
 | Rúbrica de Evaluación | ✅ Editor visual |
 | Panel Admin | ✅ KPIs, gestión, sync |
+| Centro inteligente docente | ✅ Alertas, agenda, automatizaciones, banco docente real, asistente |
+| Centro estudiante | ✅ Pendientes, progreso, plan semanal, entregas |
+| Auditoría UX/UI | ✅ Formularios, tablas mobile, diálogos, contraste, empty states |
 | CodeGraph Index | ✅ Base de datos SQLite generada |
 | Contratos API | ✅ Documentados (API_CONTRACTS.md) |
 | Sistema de Diseño | ✅ Documentado (DESIGN_SYSTEM.md) |
 | Branding UNITEPC | ✅ Colores consistentes en todo el sistema |
-| **Backend Laravel 12** | ❌ No iniciado |
-| **Integración SISA real** | ❌ Pendiente |
+| **Backend Laravel 12** | ✅ Iniciado y completado hasta la Fase E (migraciones, controladores, seeders) |
+| **Integración SISA real** | ❌ Pendiente (stub funcional) |
 | **Integración Sist. Estudiantes** | ❌ Pendiente |
 | **Integración Sist. Notas** | ❌ Pendiente |
 | **Autenticación SSO real** | ❌ Pendiente |
+| **Calendario académico** | ❌ Pendiente |
+| **Mensajería interna** | ❌ Pendiente |
+| **Gestión masiva de usuarios** | ✅ Completado (API real + CSV import) |
 
 ---
 
 ## 11. Próximos Pasos Planificados
 
-1. **Backend Laravel 12:** Migraciones, modelos, controladores, servicios de integración
-2. **Integración SISA:** Endpoints reales para consumir PAC, docentes, grupos
-3. **Integración Sistema de Estudiantes:** Endpoints reales para matrícula
-4. **Integración Sistema de Notas:** Envío de calificaciones al sistema centralizado
-5. **Autenticación SSO real:** Tokens Sanctum contra SISA
-6. **Builder Canvas (avanzado):** Lienzo visual con paleta de bloques arrastrables
-7. **Notificaciones:** Sistema de notificaciones in-app + email
-8. **Cuestionario avanzado:** Más tipos de pregunta, banco de preguntas
-9. **Plugins:** Arquitectura extensible para nuevos tipos de actividad
-10. **Pruebas:** Vitest + Playwright
+1. **Integración SISA:** Reemplazar stubs por endpoints reales para consumir PAC, docentes, grupos.
+2. **Integración Sistema de Estudiantes:** Desarrollar endpoints para sincronizar matrícula activa.
+3. **Integración Sistema de Notas:** Envío de calificaciones al sistema centralizado.
+4. **Autenticación SSO real:** Tokens Sanctum contra SISA.
+5. **Builder Canvas (avanzado):** Lienzo visual con paleta de bloques arrastrables.
+6. **Notificaciones:** Sistema de notificaciones in-app + email.
+7. **Cuestionario avanzado:** Más tipos de pregunta, banco de preguntas.
+8. **Plugins:** Arquitectura extensible para nuevos tipos de actividad.
+9. **Pruebas:** Vitest + Playwright.
 
 ---
 
@@ -443,3 +453,9 @@ npm run format     # Ejecutar Prettier
 ```
 
 > **Nota:** El servidor de desarrollo debe reiniciarse (Ctrl+C → npm run dev) después de editar `quasar.variables.scss`, `design-system.scss` o `tailadmin-theme.scss` — HMR no recompila estos archivos.
+
+---
+
+## 13. Decisión actual: Consolidación de Fase E e Integraciones Reales
+
+El backend Laravel 12 ya cuenta con una base sólida (Fase A a E) cubriendo autenticación Sanctum, cursos, secciones, actividades, entregas, calificaciones, plantillas del banco docente, reportes exportables y administración de usuarios. El siguiente paso clave es migrar las integraciones simuladas (stubs) con SISA, Sistema de Estudiantes y Sistema de Notas a servicios reales de producción de UNITEPC.
