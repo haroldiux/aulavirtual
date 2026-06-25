@@ -21,6 +21,8 @@ class ActividadResource extends JsonResource
             'peso' => (float) $this->peso,
             'config' => $this->config,
             'visible' => $this->visible,
+            'tipo_actividad' => $this->tipo_actividad,
+            'grupo_calificacion' => $this->grupo_calificacion,
         ];
     }
 }

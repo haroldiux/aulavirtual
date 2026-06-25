@@ -698,5 +698,232 @@ class DatabaseSeeder extends Seeder
             'uso_count' => 5,
             'publica' => false
         ]);
+
+        // Plantilla de Curso 1: Estructura por Competencias (UNITEPC)
+        \App\Models\Plantilla::create([
+            'docente_id' => $docente1->id,
+            'categoria' => 'curso',
+            'tipo' => 'curso',
+            'nombre' => 'Estructura por Competencias (UNITEPC)',
+            'descripcion' => 'Diseño por competencias de la materia. Dividido en 4 Unidades e incluye diagnostico, foros de debate y proyectos de hito.',
+            'datos' => [
+                [
+                    'titulo' => 'Unidad I - Fundamentación y Diagnóstico',
+                    'descripcion' => 'Introducción a la materia y diagnóstico de conocimientos previos.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'encuesta',
+                            'titulo' => 'Evaluación Diagnóstica',
+                            'descripcion' => 'Responde sinceramente para medir tus conocimientos base.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['anonima' => true]
+                        ],
+                        [
+                            'tipo' => 'leccion',
+                            'titulo' => 'Introducción y Silabo de la Materia',
+                            'descripcion' => 'Lectura del plan analítico, silabo y ponderaciones.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['contenido_html' => '<h2>Sílabo de la Materia</h2><p>Bienvenido. En esta unidad revisaremos la introducción...</p>']
+                        ]
+                    ]
+                ],
+                [
+                    'titulo' => 'Unidad II - Desarrollo de Saberes',
+                    'descripcion' => 'Avance principal de los conceptos teóricos y prácticos base.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'leccion',
+                            'titulo' => 'Conceptos Clave y Material de Estudio',
+                            'descripcion' => 'Diapositivas y lecturas complementarias.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['contenido_html' => '<h2>Material de la Unidad II</h2><p>Estudia el siguiente contenido sobre buenas prácticas...</p>']
+                        ],
+                        [
+                            'tipo' => 'tarea',
+                            'titulo' => 'Práctica de Aplicación Teórica',
+                            'descripcion' => 'Aplica los conceptos en base al caso de estudio proporcionado.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 1.0,
+                            'config' => ['instrucciones' => 'Resuelve el problema práctico en un informe en formato PDF y súbelo al sistema.']
+                        ]
+                    ]
+                ],
+                [
+                    'titulo' => 'Unidad III - Hito Evaluativo Intermedio',
+                    'descripcion' => 'Control de comprensión intermedio mediante evaluaciones grupales y cuestionarios.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'foro',
+                            'titulo' => 'Foro Académico: Debate Temático',
+                            'descripcion' => 'Participa discutiendo las ventajas y desventajas de la metodología.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 20,
+                            'peso' => 0.5,
+                            'config' => ['tipo_foro' => 'debate']
+                        ],
+                        [
+                            'tipo' => 'cuestionario',
+                            'titulo' => 'Examen del Primer Hito',
+                            'descripcion' => 'Evaluación de los conceptos asimilados en las unidades I y II.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 1.5,
+                            'config' => ['tiempo_limite_minutos' => 30, 'intentos_maximos' => 1]
+                        ]
+                    ]
+                ],
+                [
+                    'titulo' => 'Unidad IV - Proyecto Integrador y Cierre',
+                    'descripcion' => 'Consolidación de lo aprendido mediante el desarrollo del proyecto final de la materia.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'tarea',
+                            'titulo' => 'Entrega del Proyecto Integrador',
+                            'descripcion' => 'Código fuente, manual técnico e informe ejecutivo.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 2.0,
+                            'config' => ['instrucciones' => 'Comprime tu código fuente y el reporte técnico en un archivo .zip y súbelo.']
+                        ],
+                        [
+                            'tipo' => 'encuesta',
+                            'titulo' => 'Encuesta de Satisfacción del Estudiante',
+                            'descripcion' => 'Dinos tu opinión sobre la materia y el docente para seguir mejorando.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['anonima' => true]
+                        ]
+                    ]
+                ]
+            ],
+            'uso_count' => 32,
+            'publica' => true
+        ]);
+
+        // Plantilla de Curso 2: Estructura Modular Semanal
+        \App\Models\Plantilla::create([
+            'docente_id' => $docente1->id,
+            'categoria' => 'curso',
+            'tipo' => 'curso',
+            'nombre' => 'Estructura Modular Semanal (4 Semanas)',
+            'descripcion' => 'Organización lineal y cronológica. Adecuada para asignaturas prácticas o intensivas de un mes.',
+            'datos' => [
+                [
+                    'titulo' => 'Semana 1 - Fundamentos e Inicio',
+                    'descripcion' => 'Introducción y nivelación rápida de la materia.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'leccion',
+                            'titulo' => 'Guía Semanal de Aprendizaje',
+                            'descripcion' => 'Lección introductoria del curso y directrices.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['contenido_html' => '<h2>Semana 1</h2><p>Estudia la guía de aprendizaje...</p>']
+                        ],
+                        [
+                            'tipo' => 'tarea',
+                            'titulo' => 'Entregable Semanal N° 1',
+                            'descripcion' => 'Práctica introductoria individual.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 1.0,
+                            'config' => ['instrucciones' => 'Realiza los ejercicios de la sección 1.']
+                        ]
+                    ]
+                ],
+                [
+                    'titulo' => 'Semana 2 - Profundización Teórica',
+                    'descripcion' => 'Desarrollo de los aspectos teóricos complejos de la materia.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'leccion',
+                            'titulo' => 'Conceptos Avanzados de la Materia',
+                            'descripcion' => 'Material interactivo de lectura.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['contenido_html' => '<h2>Semana 2</h2><p>Teoría detallada de la semana...</p>']
+                        ],
+                        [
+                            'tipo' => 'foro',
+                            'titulo' => 'Foro de Discusión Semanal',
+                            'descripcion' => 'Comparte tus dudas y reflexiones.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['tipo_foro' => 'normal']
+                        ],
+                        [
+                            'tipo' => 'tarea',
+                            'titulo' => 'Entregable Semanal N° 2',
+                            'descripcion' => 'Práctica sobre los temas avanzados.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 1.0,
+                            'config' => ['instrucciones' => 'Desarrolla el entregable 2.']
+                        ]
+                    ]
+                ],
+                [
+                    'titulo' => 'Semana 3 - Taller Práctico Integrado',
+                    'descripcion' => 'Laboratorio o taller grupal enfocado en el desarrollo aplicativo.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'leccion',
+                            'titulo' => 'Casos de Estudio Reales',
+                            'descripcion' => 'Material para la resolución del taller.',
+                            'tiene_nota' => false,
+                            'nota_maxima' => 0,
+                            'peso' => 0,
+                            'config' => ['contenido_html' => '<h2>Semana 3</h2><p>Casos prácticos de estudio...</p>']
+                        ],
+                        [
+                            'tipo' => 'tarea',
+                            'titulo' => 'Taller de Laboratorio Evaluado',
+                            'descripcion' => 'Práctica en equipos de trabajo.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 1.0,
+                            'config' => ['instrucciones' => 'Resuelvan el taller en grupos de hasta 3 personas.']
+                        ]
+                    ]
+                ],
+                [
+                    'titulo' => 'Semana 4 - Evaluación Final y Retroalimentación',
+                    'descripcion' => 'Cierre del curso, examen y entrega final.',
+                    'actividades' => [
+                        [
+                            'tipo' => 'cuestionario',
+                            'titulo' => 'Examen Final Teórico',
+                            'descripcion' => 'Cuestionario de 20 preguntas.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 2.0,
+                            'config' => ['tiempo_limite_minutos' => 45, 'intentos_maximos' => 1]
+                        ],
+                        [
+                            'tipo' => 'tarea',
+                            'titulo' => 'Presentación de Proyecto de Curso',
+                            'descripcion' => 'Sube aquí las diapositivas y el código final de tu proyecto.',
+                            'tiene_nota' => true,
+                            'nota_maxima' => 100,
+                            'peso' => 3.0,
+                            'config' => ['instrucciones' => 'Adjunta tu presentación final.']
+                        ]
+                    ]
+                ]
+            ],
+            'uso_count' => 18,
+            'publica' => true
+        ]);
     }
 }

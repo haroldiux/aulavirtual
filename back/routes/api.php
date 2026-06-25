@@ -112,6 +112,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('role:docente,director,admin')->group(function () {
         Route::get('/sisa/asignaturas-disponibles', [IntegracionController::class, 'asignaturasSisa'])->name('sisa.asignaturas');
         Route::post('/sisa/generar-curso', [IntegracionController::class, 'generarCursoSisa'])->name('sisa.generarCurso');
+        Route::get('/sisa/banco-preguntas', [IntegracionController::class, 'bancoPreguntas'])->name('sisa.bancoPreguntas');
         Route::post('/cursos/{curso}/sincronizar-estudiantes', [IntegracionController::class, 'sincronizarEstudiantes'])->name('sisa.syncEstudiantes');
         Route::post('/cursos/{curso}/sincronizar-notas', [IntegracionController::class, 'sincronizarNotas'])->name('sisa.syncNotas');
     });

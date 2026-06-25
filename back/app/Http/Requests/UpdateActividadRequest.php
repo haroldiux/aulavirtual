@@ -26,6 +26,8 @@ class UpdateActividadRequest extends FormRequest
             'peso' => ['nullable', 'numeric', 'min:0', 'max:999.99'],
             'config' => ['nullable', 'array'],
             'visible' => ['nullable', 'boolean'],
+            'tipo_actividad' => ['nullable', 'string', 'in:teorica,practica'],
+            'grupo_calificacion' => ['nullable', 'string', 'in:formativa_teorica,formativa_practica,examen_parcial,examen_final'],
         ];
     }
 }

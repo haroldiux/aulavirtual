@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('plantillas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('docente_id');
-            $table->enum('categoria', ['actividad', 'rubrica', 'preguntas']);
+            $table->enum('categoria', ['actividad', 'rubrica', 'preguntas', 'curso']);
             $table->string('tipo'); // ej. 'tarea', 'cuestionario', 'foro'
             $table->string('nombre');
             $table->text('descripcion')->nullable();

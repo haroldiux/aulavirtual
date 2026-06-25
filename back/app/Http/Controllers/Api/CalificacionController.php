@@ -101,6 +101,8 @@ class CalificacionController extends Controller
                     'tipo' => $a->tipo?->value,
                     'nota_maxima' => (float) $a->nota_maxima,
                     'peso' => (float) $a->peso,
+                    'tipo_actividad' => $a->tipo_actividad,
+                    'grupo_calificacion' => $a->grupo_calificacion,
                 ]),
                 'estudiantes' => $estudiantesData,
                 'promedio_general' => $promedioGeneral ? round($promedioGeneral, 2) : null,
@@ -187,6 +189,8 @@ class CalificacionController extends Controller
                 'porcentaje' => $c->porcentaje !== null ? (float) $c->porcentaje : null,
                 'retroalimentacion' => $c->retroalimentacion,
                 'fecha' => $c->updated_at?->toIso8601String(),
+                'tipo_actividad' => $c->actividad?->tipo_actividad,
+                'grupo_calificacion' => $c->actividad?->grupo_calificacion,
             ]);
 
             $promedio = $notas->avg('porcentaje');

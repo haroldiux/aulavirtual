@@ -27,6 +27,8 @@ class Actividad extends Model
         'actividadable_id',
         'actividadable_type',
         'visible',
+        'tipo_actividad',
+        'grupo_calificacion',
     ];
 
     protected function casts(): array

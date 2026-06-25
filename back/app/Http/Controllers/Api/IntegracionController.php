@@ -98,4 +98,18 @@ class IntegracionController extends Controller
             'data' => $resultado,
         ]);
     }
+
+    public function bancoPreguntas(Request $request): JsonResponse
+    {
+        $request->validate([
+            'asignatura_codigo' => ['required', 'string'],
+        ]);
+
+        $service = new SisaSyncService();
+        $preguntas = $service->bancoPreguntas($request->string('asignatura_codigo')->toString());
+
+        return response()->json([
+            'data' => $preguntas,
+        ]);
+    }
 }

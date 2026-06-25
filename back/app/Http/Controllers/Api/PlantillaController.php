@@ -39,7 +39,7 @@ class PlantillaController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'categoria' => 'required|string|in:actividad,rubrica,preguntas',
+            'categoria' => 'required|string|in:actividad,rubrica,preguntas,curso',
             'tipo' => 'required|string|max:100',
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
