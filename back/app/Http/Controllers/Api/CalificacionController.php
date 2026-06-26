@@ -103,6 +103,7 @@ class CalificacionController extends Controller
                     'peso' => (float) $a->peso,
                     'tipo_actividad' => $a->tipo_actividad,
                     'grupo_calificacion' => $a->grupo_calificacion,
+                    'parcial' => (int) $a->parcial,
                 ]),
                 'estudiantes' => $estudiantesData,
                 'promedio_general' => $promedioGeneral ? round($promedioGeneral, 2) : null,
@@ -191,6 +192,7 @@ class CalificacionController extends Controller
                 'fecha' => $c->updated_at?->toIso8601String(),
                 'tipo_actividad' => $c->actividad?->tipo_actividad,
                 'grupo_calificacion' => $c->actividad?->grupo_calificacion,
+                'parcial' => $c->actividad?->parcial ? (int) $c->actividad->parcial : 1,
             ]);
 
             $promedio = $notas->avg('porcentaje');

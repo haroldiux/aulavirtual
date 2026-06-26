@@ -23,6 +23,7 @@ class ActividadResource extends JsonResource
             'visible' => $this->visible,
             'tipo_actividad' => $this->tipo_actividad,
             'grupo_calificacion' => $this->grupo_calificacion,
+            'parcial' => $this->parcial,
         ];
     }
 }

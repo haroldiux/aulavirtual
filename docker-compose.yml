@@ -59,6 +59,8 @@ services:
         condition: service_healthy
       minio:
         condition: service_started
+      redis:
+        condition: service_started
     ports:
       - "8000:80"
     volumes:
@@ -73,6 +75,7 @@ services:
       FILESYSTEM_DISK: s3
       AWS_ENDPOINT: http://minio:9000
       AWS_PUBLIC_URL: http://localhost:9090
+      REDIS_HOST: redis
     networks:
       - aula_net
 
@@ -90,6 +93,18 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
     volumes:
       - aula_minio:/data
+    networks:
+      - aula_net
+
+  # ---------------- 2c. REDIS (Cache y Colas) ----------------
+  redis:
+    image: redis:7-alpine
+    container_name: aula_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - aula_redis:/data
     networks:
       - aula_net
 
@@ -118,6 +133,7 @@ services:
 volumes:
   aula_db:
   aula_minio:
+  aula_redis:
 
 networks:
   aula_net:

@@ -29,6 +29,7 @@ class Actividad extends Model
         'visible',
         'tipo_actividad',
         'grupo_calificacion',
+        'parcial',
     ];
 
     protected function casts(): array
@@ -41,6 +42,7 @@ class Actividad extends Model
             'nota_maxima' => 'decimal:2',
             'peso' => 'decimal:2',
             'config' => 'array',
+            'parcial' => 'integer',
         ];
     }
 
